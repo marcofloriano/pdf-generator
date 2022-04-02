@@ -5,10 +5,12 @@ class CustomPdfGenerator extends TCPDF
     {
         $image_file = 'web/logo.png';
         $this->Image($image_file, 165, 20, 25, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false); // arquivo da imagem, posição horizontal, posição vertical, tamanho da imagem
+        /*
         $this->SetFont('helvetica', 'B', 20);
         $this->Cell(0, 15, '', 0, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->Ln();
         $this->Cell(0, 15, 'Setor9', 0, false, 'R', 0, '', 0, false, 'M', 'M');
+        */
     }
  
     public function Footer() 

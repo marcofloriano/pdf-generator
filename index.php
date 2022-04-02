@@ -8,13 +8,15 @@ $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 $pdf->setFontSubsetting(true);
-$pdf->SetFont('dejavusans', '', 12, '', true);
+// $pdf->SetFont('dejavusans', '', 12, '', true);
+$pdf->SetFont('helvetica', '', 12, '', true);
  
 // start a new page
 $pdf->AddPage();
  
 // date and invoice no
 $pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
+$pdf->writeHTML("Setor9 - Negócios Online<br> 31/03/2022");
 $pdf->writeHTML("<b>DATE:</b> 31/03/2022");
 $pdf->writeHTML("<b>INVOICE#</b>12");
 $pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
