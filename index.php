@@ -9,37 +9,42 @@ $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 $pdf->setFontSubsetting(true);
 // $pdf->SetFont('dejavusans', '', 12, '', true);
-$pdf->SetFont('helvetica', '', 12, '', true);
+$pdf->SetFont('helvetica', '', 11, '', true);
  
-// start a new page
+// Primeira Página da Fatura
 $pdf->AddPage();
  
-// date and invoice no
-// $pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
+// Cabeçalho da Fatura
 $pdf->writeHTML("Setor9 - Negócios Online");
 // $pdf->writeHTML("<b>DATE:</b> 31/03/2022");
 $pdf->writeHTML("www.setor9.com.br");
 $pdf->writeHTML("Tel. 12-981924785");
-$pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
+$pdf->writeHTML("E-mail. contato@setor9.com.br");
+$pdf->Write(0, "\n\n", '', 0, 'C', true, 0, false, false, 0);
 
-// Set some content to print
+// Título da Fatura
 $html = <<<EOD
-<h1>Welcome to <a href="http://www.tcpdf.org" style="text-decoration:none;background-color:#CC0000;color:black;">&nbsp;<span style="color:black;">TC</span><span style="color:white;">PDF</span>&nbsp;</a>!</h1>
-<i>This is the first example of TCPDF library.</i>
-<p>This text is printed using the <i>writeHTMLCell()</i> method but you can also use: <i>Multicell(), writeHTML(), Write(), Cell() and Text()</i>.</p>
-<p>Please check the source code documentation and other examples for further information.</p>
-<p style="color:#CC0000;">TO IMPROVE AND EXPAND TCPDF I NEED YOUR SUPPORT, PLEASE <a href="http://sourceforge.net/donate/index.php?group_id=128076">MAKE A DONATION!</a></p>
+<table border="0" style="padding-left: 10px; padding-bottom: 10px; padding-top: 10px; color:white; font-size:16px; background-color:#8297ac">
+<tr>
+<td style="border: 1px solid white;">Fatura [N.º EQX034]</td>
+<td style="border: 1px solid white; text-align: right">Vencimento [15/06/2021]</td>
+</tr>
+</table>
 EOD;
 // Print text using writeHTMLCell()
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
-//
+// Teste
 $html = <<<EOD
-<div style="font-size: 18px; background-color:#8297ac;color:white; padding:20px;">
-Fatura [N.º EQX034]
-</div>
+<table border="0" style="padding-left: 100px; padding-bottom: 15px;">
+<tr>
+<td style="border: 1px solid grey;"> One two three </td>
+<td style="border: 1px solid grey;"> Four five six </td>
+</tr>
+</table>
 EOD;
 // Print text using writeHTMLCell()
+$pdf->Write(0, "\n\n", '', 0, 'C', true, 0, false, false, 0);
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
  
 // address
