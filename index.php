@@ -31,7 +31,31 @@ $html = <<<EOD
 </tr>
 </table>
 EOD;
-// Print text using writeHTMLCell()
+$pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true); // Print text using writeHTMLCell()
+
+// Cobrança
+$html = <<<EOD
+<table style="border-collapse: collapse; padding-left: 10px; padding-bottom: 2px; padding-top: 2px; font-size:13px;">
+<tr>
+<td width="30%" style="border-bottom: 1px solid #8297ac; color:#8297ac;">Cobrar de</td>
+<td width="30%" style="border-bottom: 1px solid #8297ac; color:#8297ac;">Enviar para</td>
+<td width="40%" style="border-bottom: 1px solid #8297ac; color:#8297ac;">Instruções</td>
+</tr>
+<tr>
+<td width="30%">EQUIPAX<br>Daniela Borges<br>Márcio Ferreira</td>
+<td width="30%">equipax@equipax.com.br<br>daniela@equipax.com.br</td>
+<td width="40%">Conta Para Transferência:<br>
+Banco 260 – Nu Pagamentos S.A.<br>
+Agência 0001<br>
+Conta Corrente 36499125-7<br>
+Marco Antonio de Oliveira Floriano<br>
+CPNJ 17013402000123<br>
+Chave PIX: 17013402000123 (CNPJ)<br>
+</td>
+</tr>
+</table>
+EOD;
+$pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
 // Teste
@@ -43,8 +67,7 @@ $html = <<<EOD
 </tr>
 </table>
 EOD;
-// Print text using writeHTMLCell()
-$pdf->Write(0, "\n\n", '', 0, 'C', true, 0, false, false, 0);
+$pdf->Write(0, "\n\n", '', 0, 'C', true, 0, false, false, 0); 
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
  
 // address
