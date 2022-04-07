@@ -22,13 +22,13 @@ class CustomPdfGenerator extends TCPDF
  
     public function printTable($header, $data)
     {
-        $this->SetFillColor(0, 0, 0);
+        $this->SetFillColor(130, 151, 172);
         $this->SetTextColor(255);
-        $this->SetDrawColor(128, 0, 0);
-        $this->SetLineWidth(0.3);
-        $this->SetFont('', 'B', 12);
+        $this->SetDrawColor(255);
+        $this->SetLineWidth(0.1);
+        $this->SetFont('helvetica', '', 11);
  
-        $w = array(110, 17, 25, 30);
+        $w = array(30, 92, 30, 30); // largura de cada coluna
         $num_headers = count($header);
         for($i = 0; $i < $num_headers; ++$i) {
             $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);

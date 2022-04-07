@@ -35,16 +35,16 @@ $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true); // Print text
 
 // Cobrança
 $html = <<<EOD
-<table style="border-collapse: collapse; padding-left: 10px; padding-bottom: 2px; padding-top: 2px; font-size:13px;">
+<table style="border-collapse: collapse; padding-left: 10px; padding-top: 2px; font-size:13px;">
 <tr>
 <td width="30%" style="border-bottom: 1px solid #8297ac; color:#8297ac;">Cobrar de</td>
 <td width="30%" style="border-bottom: 1px solid #8297ac; color:#8297ac;">Enviar para</td>
 <td width="40%" style="border-bottom: 1px solid #8297ac; color:#8297ac;">Instruções</td>
 </tr>
 <tr>
-<td width="30%">EQUIPAX<br>Daniela Borges<br>Márcio Ferreira</td>
-<td width="30%">equipax@equipax.com.br<br>daniela@equipax.com.br</td>
-<td width="40%">Conta Para Transferência:<br>
+<td width="30%" style="border-bottom: 1px solid #8297ac;">EQUIPAX<br>Daniela Borges<br>Márcio Ferreira</td>
+<td width="30%" style="border-bottom: 1px solid #8297ac;">equipax@equipax.com.br<br>daniela@equipax.com.br</td>
+<td width="40%" style="border-bottom: 1px solid #8297ac;">Conta Para Transferência:<br>
 Banco 260 – Nu Pagamentos S.A.<br>
 Agência 0001<br>
 Conta Corrente 36499125-7<br>
@@ -57,34 +57,10 @@ Chave PIX: 17013402000123 (CNPJ)<br>
 EOD;
 $pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+$pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
 
-// Teste
-$html = <<<EOD
-<table border="0" style="padding-left: 100px; padding-bottom: 15px;">
-<tr>
-<td style="border: 1px solid grey;"> One two three </td>
-<td style="border: 1px solid grey;"> Four five six </td>
-</tr>
-</table>
-EOD;
-$pdf->Write(0, "\n\n", '', 0, 'C', true, 0, false, false, 0); 
-$pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
- 
-// address
-$pdf->writeHTML("84 Norton Street,");
-$pdf->writeHTML("NORMANHURST,");
-$pdf->writeHTML("New South Wales, 2076");
-$pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
- 
-// bill to
-$pdf->writeHTML("<b>BILL TO:</b>", true, false, false, false, 'R');
-$pdf->writeHTML("22 South Molle Boulevard,", true, false, false, false, 'R');
-$pdf->writeHTML("KOOROOMOOL,", true, false, false, false, 'R');
-$pdf->writeHTML("Queensland, 4854", true, false, false, false, 'R');
-$pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
- 
-// invoice table starts here
-$header = array('DESCRIPTION', 'UNITS', 'RATE $', 'AMOUNT');
+// Tabela
+$header = array('Serviço', 'Descrição', 'Ref', 'Total');
 $data = array(
    array('Item #1','1','100','100'),
    array('Item #2','2','200','400')
