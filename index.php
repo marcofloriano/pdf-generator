@@ -59,13 +59,19 @@ $pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 $pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
 
-// Tabela
+// Tabela 1
+/*
 $header = array('Serviço', 'Descrição', 'Ref', 'Total');
 $data = array(
-   array('Item #1','1','100','100'),
+   array('Item de teste #1','1','100','100'),
    array('Item #2','2','200','400')
 );
 $pdf->printTable($header, $data);
+$pdf->Ln();
+*/
+
+// Tabela 2
+$pdf->printNewTable();
 $pdf->Ln();
  
 // comments
