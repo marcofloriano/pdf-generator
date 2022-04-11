@@ -71,9 +71,12 @@ $pdf->Ln();
 */
 
 // Tabela 2
-$pdf->printNewTable();
+$header = array('Serviço', 'Descrição', 'Ref', 'Total');
+$pdf->printTableHeader($header);
 $pdf->Ln();
- 
+$pdf->printTableContent();
+$pdf->Ln();
+
 // comments
 $pdf->SetFont('', '', 12);
 $pdf->writeHTML("<b>OTHER COMMENTS:</b>");

@@ -70,14 +70,54 @@ class CustomPdfGenerator extends TCPDF
         $this->Cell(array_sum($w), 0, '', 'T');
     }
 
-    public function printNewTable()
+    public function printTableHeader($header)
     {
         $this->SetFillColor(130, 151, 172);
         $this->SetTextColor(255);
         $this->SetDrawColor(255);
         $this->SetLineWidth(0.1);
         $this->SetFont('helvetica', '', 11);
-        
+ 
+        $w = array(30, 92, 30, 30); // largura de cada coluna
+        $num_headers = count($header);
+        for($i = 0; $i < $num_headers; ++$i) {
+            $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
+        }
+    }
+
+    public function printTableContent()
+    {
+        // set font
+        $this->SetFont('helvetica', '', 10);
+        $this->SetTextColor(0);
+        // set cell padding
+        $this->setCellPaddings(1, 1, 1, 1);
+        // set cell margins
+        $this->setCellMargins(1, 1, 1, 1);
+        // set color for background
+        $this->SetFillColor(255, 255, 127);
+
+        // set some text for example
+        $servico = 'Hospedagem Gerenciada WordPress';
+        $descricao = 'Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/';
+        $ref = 'Contrato Mensal';
+        $total = 'R$50,00';
+
+        // Multicell test
+        // largura, altura, texto à esquerda, texto central, borda, posicionamento, background, quebra de linha,  
+        $this->MultiCell(30, 5, ''.$servico, 0, 'L', 0, 0, '', '', true);
+        $this->MultiCell(90, 5, ''.$descricao, 0, 'L', 0, 0, '', '', true);
+        $this->MultiCell(30, 5, ''.$ref, 0, 'L', 0, 0, '', '', true);
+        $this->MultiCell(25, 5, ''.$total."\n\n", 0, 'R', 0, 2, '' ,'', true);
+        //$this->MultiCell(55, 5, '[DEFAULT] '.$txt, 1, '', 0, 1, '', '', true);
+        $this->writeHTML("<hr>", true, false, false, false, 'C');
+    }
+
+    public function printNewTable()
+    {
+        // set font
+        $this->SetFont('times', '', 10);
+
         // set cell padding
         $this->setCellPaddings(1, 1, 1, 1);
 
@@ -101,12 +141,20 @@ class CustomPdfGenerator extends TCPDF
 
         $this->Ln(4);
 
+        // set color for background
+        $this->SetFillColor(220, 255, 220);
+
         // Vertical alignment
         $this->MultiCell(55, 40, '[VERTICAL ALIGNMENT - TOP] '.$txt, 1, 'J', 1, 0, '', '', true, 0, false, true, 40, 'T');
         $this->MultiCell(55, 40, '[VERTICAL ALIGNMENT - MIDDLE] '.$txt, 1, 'J', 1, 0, '', '', true, 0, false, true, 40, 'M');
         $this->MultiCell(55, 40, '[VERTICAL ALIGNMENT - BOTTOM] '.$txt, 1, 'J', 1, 1, '', '', true, 0, false, true, 40, 'B');
 
         $this->Ln(4);
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        // set color for background
+        $this->SetFillColor(215, 235, 255);
 
         // set some text for example
         $txt = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed imperdiet lectus. Phasellus quis velit velit, non condimentum quam. Sed neque urna, ultrices ac volutpat vel, laoreet vitae augue. Sed vel velit erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras eget velit nulla, eu sagittis elit. Nunc ac arcu est, in lobortis tellus. Praesent condimentum rhoncus sodales. In hac habitasse platea dictumst. Proin porta eros pharetra enim tincidunt dignissim nec vel dolor. Cras sapien elit, ornare ac dignissim eu, ultricies ac eros. Maecenas augue magna, ultrices a congue in, mollis eu nulla. Nunc venenatis massa at est eleifend faucibus. Vivamus sed risus lectus, nec interdum nunc.
@@ -115,6 +163,8 @@ class CustomPdfGenerator extends TCPDF
 
         // print a blox of text using multicell()
         $this->MultiCell(80, 5, $txt."\n", 1, 'J', 1, 1, '' ,'', true);
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         // AUTO-FITTING
 
@@ -140,5 +190,13 @@ class CustomPdfGenerator extends TCPDF
         $txt = "CUSTOM PADDING:\nLeft=2, Top=4, Right=6, Bottom=8\nLorem ipsum dolor sit amet, consectetur adipiscing elit. In sed imperdiet lectus. Phasellus quis velit velit, non condimentum quam. Sed neque urna, ultrices ac volutpat vel, laoreet vitae augue.\n";
 
         $this->MultiCell(55, 5, $txt, 1, 'J', 1, 2, 125, 210, true);
+
+        // move pointer to last page
+        $this->lastPage();
+
+        // ---------------------------------------------------------
+
+        //Close and output PDF document
+        $this->Output('example_005.pdf', 'I');
     }
 }
