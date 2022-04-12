@@ -72,10 +72,10 @@ $pdf->Ln();
 
 // Tabela 2
 $header = array('Serviço', 'Descrição', 'Ref', 'Total');
+$item = array('Hospedagem Gerenciada WordPress', 'Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/', 'Contrato Mensal', 'R$50,00');
 $pdf->printTableHeader($header);
-$pdf->Ln();
-$pdf->printTableContent();
-$pdf->Ln();
+$pdf->printTableItem($item);
+$pdf->Ln(20);
 
 // comments
 $pdf->SetFont('', '', 12);

@@ -85,7 +85,7 @@ class CustomPdfGenerator extends TCPDF
         }
     }
 
-    public function printTableContent()
+    public function printTableItem($coluna)
     {
         // set font
         $this->SetFont('helvetica', '', 10);
@@ -96,21 +96,27 @@ class CustomPdfGenerator extends TCPDF
         $this->setCellMargins(1, 1, 1, 1);
         // set color for background
         $this->SetFillColor(255, 255, 127);
+        // set cell border color
+        //$this->SetDrawColor(0);
+        //$this->SetLineWidth(0.1);
 
-        // set some text for example
-        $servico = 'Hospedagem Gerenciada WordPress';
-        $descricao = 'Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/';
-        $ref = 'Contrato Mensal';
-        $total = 'R$50,00';
+        $html = <<<EOD
+        <table>
+        <tr>
+        EOD;
+        $this->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
-        // Multicell test
-        // largura, altura, texto à esquerda, texto central, borda, posicionamento, background, quebra de linha,  
-        $this->MultiCell(30, 5, ''.$servico, 0, 'L', 0, 0, '', '', true);
-        $this->MultiCell(90, 5, ''.$descricao, 0, 'L', 0, 0, '', '', true);
-        $this->MultiCell(30, 5, ''.$ref, 0, 'L', 0, 0, '', '', true);
-        $this->MultiCell(25, 5, ''.$total."\n\n", 0, 'R', 0, 2, '' ,'', true);
-        //$this->MultiCell(55, 5, '[DEFAULT] '.$txt, 1, '', 0, 1, '', '', true);
-        $this->writeHTML("<hr>", true, false, false, false, 'C');
+        // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0) 
+        $this->MultiCell(30, 5, $coluna[0], 0, 'L', 0, 0, '', '', true);
+        $this->MultiCell(90, 5, $coluna[1], 0, 'J', 0, 0, '', '', true);
+        $this->MultiCell(30, 5, $coluna[2], 0, 'L', 0, 0, '', '', true);
+        $this->MultiCell(25, 5, $coluna[3], 0, 'R', 0, 2, '' ,'', true);
+
+        $html = <<<EOD
+        </tr>
+        </table>        
+        EOD;
+        $this->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);           
     }
 
     public function printNewTable()
