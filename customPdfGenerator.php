@@ -85,7 +85,7 @@ class CustomPdfGenerator extends TCPDF
         }
     }
 
-    public function printTableItem($coluna)
+    public function printTableItem($item)
     {
         // set font
         $this->SetFont('helvetica', '', 10);
@@ -100,23 +100,12 @@ class CustomPdfGenerator extends TCPDF
         //$this->SetDrawColor(0);
         //$this->SetLineWidth(0.1);
 
-        $html = <<<EOD
-        <table>
-        <tr>
-        EOD;
-        $this->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
-
         // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0) 
-        $this->MultiCell(30, 5, $coluna[0], 0, 'L', 0, 0, '', '', true);
-        $this->MultiCell(90, 5, $coluna[1], 0, 'J', 0, 0, '', '', true);
-        $this->MultiCell(30, 5, $coluna[2], 0, 'L', 0, 0, '', '', true);
-        $this->MultiCell(25, 5, $coluna[3], 0, 'R', 0, 2, '' ,'', true);
-
-        $html = <<<EOD
-        </tr>
-        </table>        
-        EOD;
-        $this->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);           
+        $maxh = 20;
+        $this->MultiCell(30, 5, $item[0], 1, 'L', 1, 0, '', '', true, 0, false, true, $maxh); 
+        $this->MultiCell(90, 5, $item[1], 0, 'J', 0, 0, '', '', true, 0, false, true, $maxh);
+        $this->MultiCell(30, 5, $item[2], 0, 'L', 0, 0, '', '', true);
+        $this->MultiCell(25, 5, $item[3], 0, 'R', 0, 2, '' ,'', true);        
     }
 
     public function printNewTable()

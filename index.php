@@ -72,13 +72,15 @@ $pdf->Ln();
 
 // Tabela 2
 $header = array('Serviço', 'Descrição', 'Ref', 'Total');
-$item = array('Hospedagem Gerenciada WordPress', 'Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/', 'Contrato Mensal', 'R$50,00');
+$item = array('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/ Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/ Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/ Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/ Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/ Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/ Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/ Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/ Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/', 'Contrato Mensal', 'R$50,00');
 $pdf->printTableHeader($header);
+$pdf->Ln();
 $pdf->printTableItem($item);
 $pdf->Ln(20);
 
 // comments
 $pdf->SetFont('', '', 12);
+$pdf->writeHTMLCell(0, 0, '', '', '<hr>', 0, 1, 0, true, '', true);
 $pdf->writeHTML("<b>OTHER COMMENTS:</b>");
 $pdf->writeHTML("Method of payment: <i>PAYPAL</i>");
 $pdf->writeHTML("PayPal ID: <i>katie@paypal.com");
