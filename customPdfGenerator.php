@@ -101,11 +101,12 @@ class CustomPdfGenerator extends TCPDF
         //$this->SetLineWidth(0.1);
 
         // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0) 
-        $maxh = 20;
-        $this->MultiCell(30, 5, $item[0], 1, 'L', 1, 0, '', '', true, 0, false, true, $maxh); 
+        $maxh = 10;
+        $this->MultiCell(30, 5, $item[0], 1, 'L', 0, 0, '', '', true, 0, false, true, $maxh); 
         $this->MultiCell(90, 5, $item[1], 0, 'J', 0, 0, '', '', true, 0, false, true, $maxh);
-        $this->MultiCell(30, 5, $item[2], 0, 'L', 0, 0, '', '', true);
-        $this->MultiCell(25, 5, $item[3], 0, 'R', 0, 2, '' ,'', true);        
+        $this->MultiCell(30, 5, $item[2], 0, 'L', 0, 0, '', '', true, 0, false, true, $maxh);
+        $this->MultiCell(25, 5, $item[3], 0, 'R', 0, 2, '' ,'', true, 0, false, true, $maxh);
+        $this->Ln($maxh/2);    
     }
 
     public function printNewTable()
