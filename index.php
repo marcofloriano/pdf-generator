@@ -72,7 +72,7 @@ $pdf->Ln();
 
 // Tabela 2
 $header = array('Serviço', 'Descrição', 'Ref', 'Total');
-$item = array('Hospedagem Gerenciada WordPress', 'Hospedagem Pro https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem', 'Contrato Mensal', 'R$50,00');
+$item = array('Hospedagem Gerenciada WordPress', 'Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios ou Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios ou Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios', 'Contrato Mensal', 'R$50,00');
 $pdf->printTableHeader($header);
 $pdf->Ln();
 $pdf->printTableItem($item);
