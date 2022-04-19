@@ -77,8 +77,11 @@ $pdf->printTableHeader($header);
 $pdf->Ln();
 $pdf->printTableItem($item);
 $pdf->printTableItem($item);
-// $pdf->writeHTMLCell(0, 0, '', '', '<hr>', 0, 1, 0, true, '', true);
-$pdf->Ln(20);
+
+// Total da Fatura
+
+
+/*
 
 // comments
 $pdf->SetFont('', '', 12);
@@ -89,5 +92,7 @@ $pdf->Write(0, "\n\n\n", '', 0, 'C', true, 0, false, false, 0);
 $pdf->writeHTML("If you have any questions about this invoice, please contact:", true, false, false, false, 'C');
 $pdf->writeHTML("Katie A Falk, (07) 4050 2235, katie@sks.com", true, false, false, false, 'C');
  
+*/
+
 // save pdf file
-$pdf->Output(__DIR__ . '/invoice#12.pdf', 'I');
+$pdf->Output(__DIR__ . '/fatura.pdf', 'I');

@@ -16,8 +16,22 @@ class CustomPdfGenerator extends TCPDF
     public function Footer() 
     {
         $this->SetY(-15);
-        $this->SetFont('helvetica', 'I', 15);
+        $this->SetFont('helvetica', '', 10);
         $this->Cell(0, 10, 'setor9.com.br', 0, false, 'C', 0, '', 0, false, 'T', 'M');
+    }
+
+    public function Line()
+    {
+        $html = <<<EOD
+        <table style="border-collapse: collapse;">
+        <tr>
+        <td width="100%" style="border-bottom: 1px solid #8297ac;"> </td>
+        </tr>
+        </table>
+        EOD;
+        $this->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
+        $this->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+        $this->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
     }
  
     public function printTable($header, $data)
@@ -105,7 +119,8 @@ class CustomPdfGenerator extends TCPDF
         $this->MultiCell(90, 5, substr($item[1],0,150), 0, 'L', 0, 0, '', '', true, 0, false, true);
         $this->MultiCell(30, 5, substr($item[2],0,30), 0, 'L', 0, 0, '', '', true, 0, false, true);
         $this->MultiCell(25, 5, substr($item[3],0,25), 0, 'L', 0, 2, '' ,'', true, 0, false, true);
-        $this->Ln(10);    
+        $this->Ln();
+        $this->Line();
     }
 
     public function printNewTable()
