@@ -59,40 +59,16 @@ $pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 $pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
 
-// Tabela 1
-/*
-$header = array('Serviço', 'Descrição', 'Ref', 'Total');
-$data = array(
-   array('Item de teste #1','1','100','100'),
-   array('Item #2','2','200','400')
-);
-$pdf->printTable($header, $data);
-$pdf->Ln();
-*/
-
-// Tabela 2
+// Tabela de Items
 $header = array('Serviço', 'Descrição', 'Ref', 'Total');
 $item = array('Hospedagem Gerenciada WordPress', 'Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios ou Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios ou Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios', 'Contrato Mensal', 'R$50,00');
-$pdf->printTableHeader($header);
+$pdf->printHeader($header);
 $pdf->Ln();
-$pdf->printTableItem($item);
-$pdf->printTableItem($item);
+$pdf->printItem($item);
+$pdf->printItem($item);
 
 // Total da Fatura
 
-
-/*
-
-// comments
-$pdf->SetFont('', '', 12);
-$pdf->writeHTML("<b>OTHER COMMENTS:</b>");
-$pdf->writeHTML("Method of payment: <i>PAYPAL</i>");
-$pdf->writeHTML("PayPal ID: <i>katie@paypal.com");
-$pdf->Write(0, "\n\n\n", '', 0, 'C', true, 0, false, false, 0);
-$pdf->writeHTML("If you have any questions about this invoice, please contact:", true, false, false, false, 'C');
-$pdf->writeHTML("Katie A Falk, (07) 4050 2235, katie@sks.com", true, false, false, false, 'C');
- 
-*/
 
 // save pdf file
 $pdf->Output(__DIR__ . '/fatura.pdf', 'I');
