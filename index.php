@@ -61,14 +61,46 @@ $pdf->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
 
 // Tabela de Items
 $header = array('Serviço', 'Descrição', 'Ref', 'Total');
-$item = array('Hospedagem Gerenciada WordPress', 'Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios ou Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios ou Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios', 'Contrato Mensal', 'R$50,00');
+$item1 = array('Hospedagem Gerenciada WordPress', 'Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios ou Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios ou Hospedagem Pro - https://setor9.com.br/servicos/hospedagem-gerenciada-wordpress/Hospedagem - Para pequenos negócios', 'Contrato Mensal', 'R$50,00');
+$item2 = array('Hospedagem Clássica', 'Servidor residencial de 120GB', 'Contrato Mensal', 'R$50,00');
 $pdf->printHeader($header);
 $pdf->Ln();
-$pdf->printItem($item);
-$pdf->printItem($item);
+$pdf->printItem($item1);
+$pdf->printItem($item2);
 
 // Total da Fatura
-
+$subtotal = <<<EOD
+<table style="border-collapse: collapse; font-size:13px;">
+<tr>
+<td width="45%" style="border-bottom: 1px solid #ffffff; color:#8297ac;"></td>
+<td width="35%" style="border-bottom: 1px solid #8297ac; color:#8297ac;">Subtotal</td>
+<td width="20%" align="right" style="border-bottom: 1px solid #8297ac; color:#000000;">R$100,00</td>
+</tr>
+</table>
+EOD;
+$desconto = <<<EOD
+<table style="border-collapse: collapse; font-size:13px;">
+<tr>
+<td width="45%" style="border-bottom: 1px solid #ffffff; color:#8297ac;"></td>
+<td width="35%" style="border-bottom: 1px solid #8297ac; color:#8297ac;">Desconto</td>
+<td width="20%" align="right" style="border-bottom: 1px solid #8297ac; color:#000000;">R$10,00</td>
+</tr>
+</table>
+EOD;
+$total = <<<EOD
+<table style="border-collapse: collapse; font-size:13px;">
+<tr>
+<td width="45%" style="border-bottom: 1px solid #ffffff; color:#8297ac;"></td>
+<td width="35%" style="border-bottom: 1px solid #8297ac; color:#8297ac;"><b>Total a ser pago até [15/06/2021]</b></td>
+<td width="20%" align="right" style="border-bottom: 1px solid #8297ac; color:#000000;"><b>R$90,00</b></td>
+</tr>
+</table>
+EOD;
+$pdf->Ln();
+$pdf->writeHTMLCell(0, 0, '', '', $subtotal, 0, 1, 0, true, '', true);
+$pdf->writeHTMLCell(0, 0, '', '', $desconto, 0, 1, 0, true, '', true);
+$pdf->Ln();
+$pdf->writeHTMLCell(0, 0, '', '', $total, 0, 1, 0, true, '', true);
 
 // save pdf file
 $pdf->Output(__DIR__ . '/fatura.pdf', 'I');

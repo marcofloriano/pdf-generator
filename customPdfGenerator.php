@@ -20,20 +20,6 @@ class CustomPdfGenerator extends TCPDF
         $this->Cell(0, 10, 'setor9.com.br', 0, false, 'C', 0, '', 0, false, 'T', 'M');
     }
 
-    public function printLine()
-    {
-        $html = <<<EOD
-        <table style="border-collapse: collapse;">
-        <tr>
-        <td width="100%" style="border-bottom: 1px solid #8297ac;"> </td>
-        </tr>
-        </table>
-        EOD;
-        $this->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
-        $this->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
-        $this->Write(0, "\n", '', 0, 'C', true, 0, false, false, 0);
-    }
-
     public function printHeader($header)
     {
         $this->SetFillColor(130, 151, 172);
@@ -49,15 +35,28 @@ class CustomPdfGenerator extends TCPDF
         }
     }
 
+    public function printLine()
+    {
+        $this->Ln();
+        $html = <<<EOD
+        <table style="border-collapse: collapse;">
+        <tr>
+        <td width="100%" style="border-bottom: 1px solid #8297ac;"> </td>
+        </tr>
+        </table>
+        EOD;        
+        $this->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);       
+    }
+
     public function printItem($item)
     {
         // set font
         $this->SetFont('helvetica', '', 10);
         $this->SetTextColor(0);
         // set cell padding
-        $this->setCellPaddings(1, 1, 1, 1);
+        $this->setCellPaddings(1, 1, 1, 0);
         // set cell margins
-        $this->setCellMargins(1, 1, 1, 1);
+        $this->setCellMargins(1, 1, 1, 0);
         // set color for background
         $this->SetFillColor(255, 255, 127);
         // set cell border color
@@ -68,8 +67,7 @@ class CustomPdfGenerator extends TCPDF
         $this->MultiCell(30, 5, substr($item[0],0,30), 1, 'L', 0, 0, '', '', true, 0, false, true); 
         $this->MultiCell(90, 5, substr($item[1],0,150), 0, 'L', 0, 0, '', '', true, 0, false, true);
         $this->MultiCell(30, 5, substr($item[2],0,30), 0, 'L', 0, 0, '', '', true, 0, false, true);
-        $this->MultiCell(25, 5, substr($item[3],0,25), 0, 'L', 0, 2, '' ,'', true, 0, false, true);
-        $this->Ln();
+        $this->MultiCell(25, 5, substr($item[3],0,25), 0, 'R', 0, 2, '' ,'', true, 0, false, true);
         $this->printLine();
     }
 }
